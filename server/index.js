@@ -9,24 +9,18 @@ require('dotenv').config();
 require('./database/config').dbConnection();
 
 
-// App de Express
+// App Express and configs
 const app = express();
 
 app.use(cors());
 app.use( express.json() );
-
-const server = require('http').createServer(app);
-
-
-const publicPath = path.resolve( __dirname, 'public' );
-app.use(bodyParser.urlencoded({extended : true}));
-app.use( express.static( publicPath ));
-app.use(express.json());
-
 app.use( '/api/users', require('./routes/users') );
 
-addInitialUsers();
+//creating server
+const server = require('http').createServer(app);
 
+//add the users to database if they don't exist
+addInitialUsers();
 
 
 server.listen( process.env.PORT, ( err ) => {
