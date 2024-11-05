@@ -26,14 +26,14 @@ class HeaderDataUser extends StatelessWidget {
           ],
         ),
         Text(
-          "\$100.000.000", 
+          "\$${user.totalAmountFormatted}", 
           style: TextStyle(fontSize: 36*responsive.scaleAverage, fontWeight: FontWeight.w500)),
         
         Text(
           "Total Return", 
           style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14*responsive.scaleAverage)),
         Text(
-          "\$150.000.000", 
+          "\$${user.totalReturnFormatted}", 
           style: TextStyle(fontSize: 36*responsive.scaleAverage, fontWeight: FontWeight.w500)),
       ],
     );

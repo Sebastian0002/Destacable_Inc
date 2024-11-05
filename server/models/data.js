@@ -1,3 +1,4 @@
+const { v4: uuidv4 } = require('uuid');
 
 class Data {
     constructor({
@@ -7,6 +8,7 @@ class Data {
         start_date = new Date(), 
         end_date = new Date(), 
         roi = 0}){
+        this.id = uuidv4();
         this.bank_name = bank_name;
         this.amount = amount;
         this.rate = rate;

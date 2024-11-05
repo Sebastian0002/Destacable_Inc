@@ -1,7 +1,7 @@
-
-import 'dart:developer';
-
+import 'package:destacable_inc/data/helpers/operators.dart';
+import 'package:destacable_inc/data/models/data.dart';
 import 'package:destacable_inc/data/models/user.dart';
+import 'package:destacable_inc/ui/pages/home/helpers/color_chart.dart';
 import 'package:destacable_inc/ui/utils/responsive.dart';
 import 'package:flutter/material.dart';
 
@@ -12,10 +12,6 @@ class BarChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double totalAmount = 0.0;
-    for (var data in user.data) {
-      totalAmount += data.amount;
-    }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -30,8 +26,7 @@ class BarChart extends StatelessWidget {
             scrollDirection: Axis.horizontal, 
             child: Row(
             children: user.data.map((e){
-              final percentage = e.amount/totalAmount;
-              return _GraphItem(percentage: percentage);
+              return _GraphItem(user: user, data: e,);
             }).toList(),
           )
           ),
@@ -43,25 +38,54 @@ class BarChart extends StatelessWidget {
   }
 }
 
-class _GraphItem extends StatelessWidget {
-  const _GraphItem({ required this.percentage});
-  final double percentage;
+class _GraphItem extends StatefulWidget {
+  const _GraphItem({ required this.user, required this.data });
+  final User user;
+  final Data data;
+
+  @override
+  State<_GraphItem> createState() => _GraphItemState();
+}
+
+class _GraphItemState extends State<_GraphItem> {
+  bool isVisiblePercentage = false;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: (){
-        final customPercentage = double.parse((percentage*100).toStringAsFixed(1));
-        log(customPercentage.toString());
-      },
-      child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 1.5*responsive.scaleWidth),
-        height: 30*responsive.scaleHeight,
-        width: responsive.screenWidth *percentage,
-        decoration: BoxDecoration(
-            color: Colors.grey,
-            borderRadius: BorderRadius.circular(8)
-        ),
-      ),
+    final percentage = widget.data.amount/widget.user.totalAmount;
+    return Column(
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 1.5*responsive.scaleWidth),
+              height: 30*responsive.scaleHeight,
+              width: responsive.screenWidth *percentage,
+              decoration: BoxDecoration(
+                  color: ColorChart.getColorForValue(double.parse(widget.data.amount.toString()), double.parse(widget.user.data[0].amount.toString())),
+                  borderRadius: BorderRadius.circular(8)
+              )
+            ),
+            SizedBox(height: 5*responsive.scaleHeight,),
+            Row(
+              children: [
+                Container(
+                  height: 18*responsive.scaleHeight,
+                  width: 18*responsive.scaleWidth,
+                  decoration: BoxDecoration(
+                      color: const Color(0xffD9D9D9),
+                      borderRadius: BorderRadius.circular(100)
+                  ),
+                ),
+                SizedBox(width: 3*responsive.scaleWidth),
+                Text("${Operators.getPercentage(percentage)}%", style: TextStyle(fontSize: 11*responsive.scaleAverage, fontWeight: FontWeight.w500)),
+                SizedBox(width: 5*responsive.scaleWidth),
+    
+              ],
+            ),
+          ],
+        )
+      ],
     );
   }
 }

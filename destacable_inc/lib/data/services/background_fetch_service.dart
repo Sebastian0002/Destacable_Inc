@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:ui';
 
-// import 'package:destacable_inc/cubit/cubit_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 
@@ -33,7 +32,6 @@ Future<void> initializeService() async {
   @pragma('vm:entry-point')
   void _onStart(ServiceInstance service) async{
     WidgetsFlutterBinding.ensureInitialized();
-      // Timer.periodic(const Duration(seconds: 10), (timer) async {
-      //   CubitProvider.instanceuser.fetchData();
+      // Timer.periodic(const Duration(seconds: 1000), (timer) async {
       // });
   }

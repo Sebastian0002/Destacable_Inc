@@ -15,35 +15,35 @@ const getInitialdataUser1 = () => {
     }));
     data.push(new Data({bank_name: "Banco Comunal", amount:  20000000, rate: 11,start_date: new Date("3/1/2024"),
         end_date: new Date("3/1/2025"),
-        roi:  11000000
+        roi: 22200000
     }));
     data.push(new Data({bank_name: "Banco de Inversiones", amount:  5000000, rate: 10.5,start_date: new Date("4/1/2024"),
         end_date: new Date("10/1/2024"),
-        roi:  11000000
+        roi: 5262500
     }));
     data.push(new Data({bank_name: "Banco del Pueblo", amount:  8000000, rate: 12,start_date: new Date("5/1/2024"),
         end_date: new Date("11/1/2024"),
-        roi:  11000000
+        roi:  8480000
     }));
     data.push(new Data({bank_name: "Banco Comunal", amount:  25000000, rate: 8,start_date: new Date("6/1/2024"),
         end_date: new Date("6/1/2025"),
-        roi:  11000000
+        roi:  27000000
     }));
     data.push(new Data({bank_name: "Banco de Inversiones", amount:  30000000, rate: 10,start_date: new Date("7/1/2024"),
         end_date: new Date("1/1/2025"),
-        roi:  11000000
+        roi:  31500000
     }));
     data.push(new Data({bank_name: "Banco del Pueblo", amount:  12000000, rate: 11.5,start_date: new Date("8/1/2024"),
         end_date: new Date("8/1/2025"),
-        roi:  11000000
+        roi:  13380000
     }));
     data.push(new Data({bank_name: "Banco de Ahorros", amount:  18000000, rate: 9.5,start_date: new Date("9/1/2024"),
         end_date: new Date("12/1/2024"),
-        roi:  11000000
+        roi:  18427500
     }));
     data.push(new Data({bank_name: "Banco de Inversiones", amount:  22000000, rate: 10,start_date: new Date("10/1/2024"),
         end_date: new Date("10/1/2025"),
-        roi:  11000000
+        roi:  24200000
     }));
 
     return data

@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:destacable_inc/data/helpers/operators.dart';
+
 class Data {
     final String id;
     final String bankName;
@@ -32,6 +34,13 @@ class Data {
         endDate: DateTime.parse(json["end_date"]),
         roi: json["roi"],
     );
+    
+    String get amountFormatted => Operators.numberWithoutDecimal(double.parse(amount.toString()));
+    String get roiFormatted => Operators.numberWithoutDecimal(double.parse(roi.toString()));
+    String get rateFormatted => Operators.formatNumberDecimal(double.parse(rate.toString()));
+    String get startDayFormatted => Operators.formatDate(startDate);
+    String get endtDayFormatted => Operators.formatDate(endDate);
+    String get returnPeriod => Operators.dateInMonths(startDate, endDate).toString();
 
     Map<String, dynamic> toMap() => {
         "id": id,

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:destacable_inc/cubit/connectivity/connectivity_cubit.dart';
 import 'package:destacable_inc/data/models/data.dart';
 import 'package:destacable_inc/data/services/db_service.dart';
 import 'package:destacable_inc/domain/gateway/user_gateway.dart';
@@ -9,6 +10,7 @@ import 'package:destacable_inc/data/models/user.dart';
 import 'package:destacable_inc/domain/usecase/user_usecase.dart';
 import 'package:destacable_inc/data/repositories/user_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:meta/meta.dart';
 
 part 'user_state.dart';
 
@@ -17,8 +19,9 @@ class UserCubit extends Cubit<UserState> {
   late UserGateway _gateWayUser;
   late UserUsecase _usecase;
   final DatabaseService db;
+  final ConnectivityCubit connection;
 
-  UserCubit({required this.db}) : super(UsersInitialState()) {
+  UserCubit({required this.db, required this.connection}) : super(UsersInitialState()) {
     _gateWayUser = UserRepository();
     _usecase = UserUsecase(userGateway: _gateWayUser);
   }
@@ -35,7 +38,7 @@ class UserCubit extends Cubit<UserState> {
         data = await db.getDataByUserId(userId);
         users.add(User(data: data, userId: userId));
       }
-      emit(UsersObtained(users: users));
+      emit(UsersObtainedState(users: users));
       log("users from local database");
     }
     else{
@@ -45,9 +48,18 @@ class UserCubit extends Cubit<UserState> {
   }
 
   Future<void> fetchData() async{
+    final stat = connection.state as ConnectivityConnectionRequest;
+    final hasUsers = await db.hasUsers();
+    if(!stat.isConnected){
+      if(!hasUsers){
+        emit(UsersErrorgetState());
+      }
+      return;
+    }
+
     List<User> users;
     emit(UsersLoadingState());
-    await Future.delayed(const Duration(seconds: 4));
+    await Future.delayed(const Duration(seconds: 2));
     users = await _usecase.getUsers();
     await db.deleteAllData();
     for (var user in users) {
@@ -58,7 +70,7 @@ class UserCubit extends Cubit<UserState> {
           await db.insertData(data, user.userId);
         }
       }
-    emit(UsersObtained(users: users));
+    emit(UsersObtainedState(users: users));
   }
 
 }
