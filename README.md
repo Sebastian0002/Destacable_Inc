@@ -12,7 +12,7 @@ Application video demo:
 
 [youtube](https://youtu.be/cTbGPM8PhsE)
 
-# Uso del codigo
+# Code use instructions
 
 To ensure everything works correctly, you must download the .env file. As a best practice, this file is excluded in the .gitignore. Simply download the [.env](https://res.cloudinary.com/dhopfnum1/raw/upload/v1730826238/wvulqto09mkva9sjhhru.env) file, rename it, and place it in the root of the server directory.
 
