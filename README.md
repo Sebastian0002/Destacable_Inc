@@ -1,21 +1,19 @@
-# mejorCDT-prueba
+# Destacable Inc
 
-Este aplicativo fue construido con el manejador de estados BLOC/CUBIT igualmente implementado una arquitectura limpia (clean architecture) y todo lo solicitado en el caso.
+This application was built using the BLOC/CUBIT state management framework, while also implementing a clean architecture approach, including the use of a local SQLite database, among other features.
 
-# Documentos de proceso, analisis y construccion del caso
+# Bussines case:
 
-Word y excel : 
+Destacable Inc's main product is its online CDT opening platform, "BetterCDT," available via web and mobile app, which generates the company's highest recurring revenue. The technical team continuously improves the product, focusing on user experience and operational efficiency. Recently, customers have requested a dashboard within the mobile app to visualize investment statistics and CDT market rate trends. The CTO has tasked you with developing a clear, user-friendly dashboard that adds value by effectively presenting this information.
 
-[Excel](https://correouisedu-my.sharepoint.com/:x:/g/personal/jhoann2171995_correo_uis_edu_co/EUdmT_c9W1FHon1VBjvBP14BkTYEvJX_phGe2QcoA4JO5g?e=LfwSmb)
+# Demo:
 
-[Word](https://correouisedu-my.sharepoint.com/:w:/g/personal/jhoann2171995_correo_uis_edu_co/EcOJL-joQ95Dl-dLlwHmXzgBHN4VQagXt8xePAtmaKCobA?e=LKYjeH)
-
-video demo de la aplicacion:
+Application video demo:
 
 [youtube](https://youtu.be/cTbGPM8PhsE)
 
 # Uso del codigo
 
-Para que todo funcione correctamente se debe descargar el [.env](https://res.cloudinary.com/dhopfnum1/raw/upload/v1730826238/wvulqto09mkva9sjhhru.env) ya que por temas de buenas practicas se omite en el .gitignore, solo se descarga el .env se re nombra y se posiciona en la raiz del direcotiro server.
+To ensure everything works correctly, you must download the .env file. As a best practice, this file is excluded in the .gitignore. Simply download the [.env](https://res.cloudinary.com/dhopfnum1/raw/upload/v1730826238/wvulqto09mkva9sjhhru.env) file, rename it, and place it in the root of the server directory.
 
-para ejecutar de manera local el aplicativo debe correrse el comando npm run start:dev dentro del directorio server para montar el servidor en local, y en flutter se debe configurar para ejecutar en dispositivos android debe dirijirse al path lib/constants/environments y modificar "YOUR_IP" por su IP local en ios si se desea probar en emulador no se debe configurar algo mas, sin embargo si se quiere probar en un dispositivo fisico al igual que en android debe cambiarse el localHost por su direccion IP.
+To run the application locally, execute the command npm run start:dev within the server directory to start the server locally. In Flutter, to configure the application for Android devices, navigate to the path lib/constants/environments and replace "YOUR_IP" with your local IP address. For iOS, if testing on an emulator, no additional configuration is needed. However, if testing on a physical device, you must also replace localhost with your IP address, just as with Android.
